@@ -32,8 +32,8 @@ app.delete(`/api/punch/:id`,ctrl.deletePunch)
 app.post(`/api/punch`,ctrl.newPunch)
 
 //Edit Punch page
-app.get(`/api/punch/:id`)
-app.put(`/api/punch/:id`)
+app.get(`/api/punch/:id`,ctrl.getPunch)
+app.put(`/api/punch/:id`,ctrl.editPunch)
 
 
 

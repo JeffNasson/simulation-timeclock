@@ -9,7 +9,9 @@ import NewPunch from './Components/NewPunch/NewPunch.js';
 export default(
     <Switch>
         <Route exact path='/' component={Home} />
-        <Route path='/edit' component={EditPunch} />
+        <Route path='/edit/:id' component={EditPunch} />
         <Route path='/new' component={NewPunch} />
     </Switch>
 )
+
+//add an id param to the edit path

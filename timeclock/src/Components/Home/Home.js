@@ -6,8 +6,10 @@ export default class Home extends Component{
     constructor(){
         super()
         this.state={
-            punches:[]
+            punches:[],
         }
+        this.deletePunch=this.deletePunch.bind(this);
+        this.editPunch=this.editPunch.bind(this);
     }
 
     //GET /api/punches
@@ -20,25 +22,41 @@ export default class Home extends Component{
     }
 
     //DELETE /api/punch/:id
+    deletePunch(id){
+        axios.delete(`/api/punch/${id}`)
+             .then((res)=>{
+                 this.setState({punches:res.data})
+             })
+    }
+
+
+    editPunch(id){
+        axios.get(`/api/punch/${id}`)
+             .then((res)=>{console.log(res)
+                 this.setState({punches:res.data})
+             })
+    }
+
+    
 
     render(){
         let displayPunches = this.state.punches.map((punch,i)=>{
             return(
-                <div className='display-punches'>
+                <div className='display-punches' key={i}>
                     <h3>{punch.punch_type}</h3>
-                    <h3>Date: {punch.date_punch}</h3>
-                    <h3>Day: {punch.days}</h3>
-                    <h3>Time: {punch.hours}:{punch.minutes} {punch.am_pm}</h3>
-                    <Link to='/edit'><button className='edit-punch-home'>Edit</button></Link>
-                    <button className='delete-punch-home'>Delete</button>
+                    <h3>Date:</h3><h4>{punch.date_punch}</h4>
+                    <h3>Day:</h3><h4>{punch.days}</h4>
+                    <h3>Time:</h3><h4>{punch.hours}:{punch.minutes} {punch.am_pm}</h4>
+                    <Link to={`/edit/${punch.id}`}><button className='edit-punch-home'>Edit</button></Link>
+                    <button className='delete-punch-home' onClick={()=>this.deletePunch(punch.id)} >Delete</button>
                 </div>
             )
         })
-        return(
+        return( 
         <div className='home-parent'>
             <h1>My Punches</h1>
             {displayPunches}
-            <Link className='link-to-new-button' to='/new'><button>New Punch</button></Link>
+            <Link to='/new'><button className='link-to-new-button'>New Punch</button></Link>
         </div>
         )
     }

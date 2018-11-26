@@ -1,5 +1,37 @@
 .editpunch-parent{
+    background-color:#efefef;
     height: 850px;
     width: 100%;
-    background-color: pink;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0 0 0 20%;
+}
+
+.editpunch-child{
+    background-color: #fcfcfc;
+    height: 200px;
+    width: 70%;
+}
+
+.editpunch-save-button{
+    background-color: #007fba;
+    color: #fcfcfc;
+    border: 0;
+    height: 25px;
+    border-radius: 2px;
+    width: 200px;
+    font-family: 'Cinzel',serif;
+    font-size: 130%;
+}
+
+.editpunch-cancel-button{
+    background-color: #8c271e;
+    color: #fcfcfc;
+    border: 0;
+    height: 25px;
+    border-radius: 2px;
+    width: 150px;
+    font-family: 'Cinzel',serif;
+    font-size: 125%;
 }
